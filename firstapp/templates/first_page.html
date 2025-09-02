@@ -1,0 +1,41 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/style_first_page.css' %}">
+    <title>Passepartout</title>
+</head>
+<body>
+<header>
+    <ul>
+        <li><a href="{% url 'firstapp:register' %}" target="_self">Регистрация</a></li>
+        <li><a href="{% url 'firstapp:authenticate' %}">Войти</a></li>
+        {% if auth %}
+            <li><a href="{% url 'firstapp:logout' %}">Выйти</a></li>
+        {% endif %}
+    </ul>
+</header>
+<main>
+    <section>
+        <div id="about">
+            <p><img src="{% static 'images/first_page_img.webp' %}" alt="Менеджер путешествий" id="img_about">Добро пожаловать в Passepartout, ваш ультимативный помощник в любых путешествиях</p>
+            <br>
+            <p>Наши преимущетсва:</p>
+            <ul>
+                <li>Удобный поиск авиа и ж/д билетов</li>
+                <li>Просмотор и отслеживание ваших заказов</li>
+                <li>С нами путешествия еще более интересны и комфортны</li>
+            </ul>
+        </div>
+    </section>
+</main>
+<footer>
+    <div><p>&copy Passepartout 2024</p></div>
+</footer>
+</body>
+</html>

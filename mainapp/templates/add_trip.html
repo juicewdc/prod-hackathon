@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/add_trip_style.css' %}">
+    <title>Главная страница</title>
+</head>
+<body>
+<header>
+    <ul>
+        <li><a href="{% url 'mainapp:main' %}">Ваши билеты</a></li>
+        <li><a href="{% url 'mainapp:statistics' %}">Статистика и достижения</a></li>
+        <li><a href="{% url 'firstapp:logout' %}">Выйти</a></li>
+    </ul>
+</header>
+<main>
+    <section>
+        <div>
+            <form action="{% url 'mainapp:process_add_trip' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="country">Введите страну</label>
+                <input name="country" type="text" id="country">
+                <label for="date_start">Введите дату начала</label>
+                <input type="date" id="date_start" name="date_start">
+                <label for="date_end">Введите дату окончания</label>
+                <input type="date" id="date_end" name="date_end">
+                <label for="price">Введите цену (только цифры)</label>
+                <input type="text" name="price" id="price">
+                <label for="trip_plan">Опишите план поедки</label>
+                <textarea name="trip_plan" id="trip_plan"></textarea>
+                <label for="file">Загрузите билет</label>
+                <input id="file" name="file" type="file" accept="application/pdf">
+                <input type="submit" value="Создать">
+            </form>
+            {% if error %}
+                <div><p>{{ error }}</p></div>
+            {% endif %}
+        </div>
+    </section>
+</main>
+<footer>
+    <div><p>&copy Passepartout 2024</p></div>
+</footer>
+</body>
+</html>

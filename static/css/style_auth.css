@@ -1,0 +1,88 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 24px;
+    min-width: 375px;
+    max-width: 100%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+header {
+    border-bottom: darkblue solid 1px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+}
+
+header ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+header ul li a {
+    text-decoration: none;
+    color: darkblue;
+}
+
+header ul li {
+    display: inline-block;
+    border: darkblue solid 1px;
+    border-radius: 0.3rem;
+    padding: 0.2rem;
+    text-align: center;
+    margin: 0.8rem;
+}
+
+header ul li:hover {
+    background-color: darkblue;
+
+    & a {
+        color: white;
+    }
+}
+
+#form_auth {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+label {
+    display: block;
+}
+
+input {
+    display: block;
+}
+
+footer {
+    border-top: darkblue solid 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: bottom;
+    bottom: 0;
+}

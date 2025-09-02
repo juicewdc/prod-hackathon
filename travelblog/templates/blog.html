@@ -1,0 +1,40 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/blog_style.css' %}">
+    <title>Блог</title>
+</head>
+<body>
+<header>
+    <ul>
+        <li><a href="{% url 'mainapp:main' %}">Ваши билеты</a></li>
+        <li><a href="{% url 'mainapp:statistics' %}">Статистика и достижения</a></li>
+        <li><a href="{% url 'firstapp:logout' %}">Выйти</a></li>
+    </ul>
+</header>
+<h1>Расскажи всем</h1>
+<a href="{% url 'travelblog:add_post' %}">Добавить пост</a>
+{% if blogs %}
+    {% for blog in blogs %}
+        <div>
+            <p>От пользователя: {{ blog.from_user }}</p>
+            <h4>{{ blog.title }}</h4>
+            <p>
+                {{ blog.content }}
+            </p>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Постов пока нет:(</p>
+{% endif %}
+<footer>
+    <div><p>&copy Passepartout 2024</p></div>
+</footer>
+</body>
+</html>
