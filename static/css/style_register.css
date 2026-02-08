@@ -8,8 +8,15 @@ html {
     max-width: 100%;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 main {
     display: flex;
+    flex: 1;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -25,6 +32,10 @@ header ul {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    gap: 0.8rem;
+    margin: 0;
+    padding: 0.5rem;
+    list-style: none;
 }
 
 header ul li a {
@@ -33,45 +44,63 @@ header ul li a {
 }
 
 header ul li {
-    display: inline-block;
+    display: inline-flex;
     border: darkblue solid 1px;
     border-radius: 0.3rem;
-    padding: 0.2rem;
+    padding: 0.3rem 0.5rem;
     text-align: center;
-    margin: 0.8rem;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 header ul li:hover {
     background-color: darkblue;
-    & a {
-        color: white;
-    }
+}
+
+header ul li:hover a {
+    color: white;
 }
 
 #form_reg {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+    max-width: 320px;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    gap: 0.8rem;
 }
 
-label {
-    display: block;
-    margin: 0.3rem;
+form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
 }
 
-input {
-    display: block;
-    margin: 0.3rem;
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.9rem;
+}
+
+form input[type="submit"] {
+    margin-top: 0.5rem;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    border: darkblue solid 1px;
+    border-radius: 0.3rem;
+    background: transparent;
+    color: darkblue;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+form input[type="submit"]:hover {
+    background-color: darkblue;
+    color: white;
 }
 
 footer {
@@ -79,6 +108,6 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: bottom;
-    bottom: 0;
+    padding: 0.5rem;
+    margin-top: auto;
 }

@@ -8,11 +8,19 @@ html {
     max-width: 100%;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 main {
     display: flex;
+    flex: 1;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 1rem;
 }
 
 header {
@@ -25,6 +33,10 @@ header ul {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    gap: 0.8rem;
+    margin: 0;
+    padding: 0.5rem;
+    list-style: none;
 }
 
 header ul li a {
@@ -33,41 +45,57 @@ header ul li a {
 }
 
 header ul li {
-    display: inline-block;
+    display: inline-flex;
     border: darkblue solid 1px;
     border-radius: 0.3rem;
-    padding: 0.2rem;
+    padding: 0.3rem 0.5rem;
     text-align: center;
-    margin: 0.8rem;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 header ul li:hover {
     background-color: darkblue;
-    & a {
-        color: white;
-    }
+}
+
+header ul li:hover a {
+    color: white;
 }
 
 #about {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1rem;
     margin: 1rem;
+    max-width: 800px;
+}
+
+#about p:first-of-type {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 1rem 0;
 }
 
 #img_about {
-    float: left;
-    margin: 0.3rem;
+    flex-shrink: 0;
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.3rem;
 }
 
-
+#about ul {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+}
 
 footer {
     border-top: darkblue solid 1px;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: bottom;
-    bottom: 0;
+    padding: 0.5rem;
+    margin-top: auto;
 }

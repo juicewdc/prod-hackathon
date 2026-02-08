@@ -22,15 +22,15 @@
 <main>
     {% if content %}
         <div class="info">
-        {% for event in content %}
+            {% for event in content %}
             <div class="info-travel">
                 <div class="travel">{{ event.date }}</div>
                 <div class="travel">{{ event.country }}</div>
                 <div class="travel">{{ event.price }}</div>
                 <div class="travel"><a href="{% url 'mainapp:download' id=event.id %}" download>Скачать билет</a></div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     {% else %}
         <div>
             <p>У вас еще нет поездок!</p>

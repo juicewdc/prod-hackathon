@@ -8,24 +8,23 @@ html {
     max-width: 100%;
 }
 
-main {
+body {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
 }
 
 header {
     border-bottom: darkblue solid 1px;
-}
-
-footer {
-    border-top: darkblue solid 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: bottom;
-    bottom: 0;
 }
 
 header ul {
@@ -34,6 +33,10 @@ header ul {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    gap: 0.8rem;
+    margin: 0;
+    padding: 0.5rem;
+    list-style: none;
 }
 
 header ul li a {
@@ -42,24 +45,67 @@ header ul li a {
 }
 
 header ul li {
-    display: inline-block;
+    display: inline-flex;
     border: darkblue solid 1px;
     border-radius: 0.3rem;
-    padding: 0.2rem;
+    padding: 0.3rem 0.5rem;
     text-align: center;
-    margin: 0.8rem;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 header ul li:hover {
     background-color: darkblue;
-    & a {
-        color: white;
-    }
+}
+
+header ul li:hover a {
+    color: white;
+}
+
+footer {
+    border-top: darkblue solid 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    margin-top: auto;
 }
 
 a {
     text-decoration: none;
     color: darkblue;
+}
+
+main h1 {
+    margin: 0 0 1rem 0;
+}
+
+main > a {
+    display: inline-flex;
+    border: darkblue solid 1px;
+    border-radius: 0.3rem;
+    padding: 0.4rem 1rem;
+    margin-bottom: 1.5rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+main > a:hover {
+    background-color: darkblue;
+    color: white;
+}
+
+main > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: darkblue solid 1px;
+    border-radius: 0.3rem;
+    padding: 1rem;
+    width: 100%;
+    max-width: 600px;
+}
+
+main > div h4 {
+    margin: 0;
 }
 
 label {

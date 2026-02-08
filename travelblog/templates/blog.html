@@ -18,9 +18,10 @@
         <li><a href="{% url 'firstapp:logout' %}">Выйти</a></li>
     </ul>
 </header>
-<h1>Расскажи всем</h1>
-<a href="{% url 'travelblog:add_post' %}">Добавить пост</a>
-{% if blogs %}
+<main>
+    <h1>Расскажи всем</h1>
+    <a href="{% url 'travelblog:add_post' %}">Добавить пост</a>
+    {% if blogs %}
     {% for blog in blogs %}
         <div>
             <p>От пользователя: {{ blog.from_user }}</p>
@@ -30,9 +31,10 @@
             </p>
         </div>
     {% endfor %}
-{% else %}
-    <p>Постов пока нет:(</p>
-{% endif %}
+    {% else %}
+        <p>Постов пока нет:(</p>
+    {% endif %}
+</main>
 <footer>
     <div><p>&copy Passepartout 2024</p></div>
 </footer>

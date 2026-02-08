@@ -8,37 +8,35 @@ html {
     max-width: 100%;
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-}
-
 body {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+}
 
+main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
 }
 
 header {
     border-bottom: darkblue solid 1px;
 }
 
-footer {
-    border-top: darkblue solid 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    bottom: 0;
-}
 header ul {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    gap: 0.8rem;
+    margin: 0;
+    padding: 0.5rem;
+    list-style: none;
 }
 
 header ul li a {
@@ -47,19 +45,29 @@ header ul li a {
 }
 
 header ul li {
-    display: inline-block;
+    display: inline-flex;
     border: darkblue solid 1px;
     border-radius: 0.3rem;
-    padding: 0.2rem;
+    padding: 0.3rem 0.5rem;
     text-align: center;
-    margin: 0.8rem;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 header ul li:hover {
     background-color: darkblue;
-    & a {
-        color: white;
-    }
+}
+
+header ul li:hover a {
+    color: white;
+}
+
+footer {
+    border-top: darkblue solid 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    margin-top: auto;
 }
 
 a {
@@ -68,32 +76,86 @@ a {
 }
 
 #add_tickets {
-    display: block;
+    display: inline-flex;
     border: darkblue solid 1px;
     border-radius: 0.3rem;
-    text-align: center;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 #add_tickets:hover {
     background-color: darkblue;
-    & a {
-        color: white;
-    }
+}
+
+#add_tickets:hover a {
+    color: white;
 }
 
 .info {
-    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 800px;
 }
 
 .info-travel {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
-    padding: 8px;
-    border: 2px solid darkblue;
-    margin: 16px;
     align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 2px solid darkblue;
+    border-radius: 0.3rem;
 }
+
 .travel {
-    padding: 16px;
+    flex: 1;
+    min-width: 80px;
+    padding: 0.25rem 0;
+}
+
+/* Формы (add_blog и др.) */
+main form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+    max-width: 480px;
+}
+
+main form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+main form input,
+main form textarea {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.9rem;
+}
+
+main form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+main form input[type="submit"] {
+    margin-top: 0.5rem;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    border: darkblue solid 1px;
+    border-radius: 0.3rem;
+    background: transparent;
+    color: darkblue;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+main form input[type="submit"]:hover {
+    background-color: darkblue;
+    color: white;
 }
