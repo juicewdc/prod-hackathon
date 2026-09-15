@@ -108,7 +108,7 @@ def request_authenticate(request):
         if user:
             login(request, user)
             return Response({'status': 200})
-        return redirect({'status': 400})
+        return Response({'status': 400}, status=status.HTTP_400_BAD_REQUEST)
 
 def authentication_process(request):
     if request.method == 'POST':

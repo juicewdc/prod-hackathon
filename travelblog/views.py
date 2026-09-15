@@ -15,10 +15,12 @@ def add_post(request):
     return render(request, 'add_blog.html')
 
 
+@login_required
 def process_add_post(request):
     if request.method == 'POST':
-        title = request.POST['title']
-        content = request.POST['post_text']
-        blog = Blog.objects.create(user_id=request.user.id, title=title, content=content)
-        blog.save()
+        title = request.POST.get('title')
+        content = request.POST.get('post_text')
+        if title and content:
+            Blog.objects.create(user_id=request.user.id, title=title, content=content)
         return redirect('travelblog:blog')
+    return redirect('travelblog:add_post')
