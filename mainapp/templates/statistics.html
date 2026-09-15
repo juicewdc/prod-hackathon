@@ -1,43 +1,46 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'css/statistics_style.css' %}">
-    <title>Моя Статистика</title>
-</head>
-<body>
-<header>
-    <ul>
-        <li><a href="{% url 'mainapp:main' %}">Ваши билеты</a></li>
-        <li><a href="{% url 'mainapp:statistics' %}">Статистика и достижения</a></li>
-        <li><a href="{% url 'firstapp:logout' %}">Выйти</a></li>
-    </ul>
-</header>
-<main>
-    <p>Количество посещенных стран: {{ count_country }} </p>
-    <p>Цена поездок в текущем месяце: {{ sum_price_month }}</p>
-    <p>Колличество предстоящих поездок: {{ trips_count }}</p>
-    <p>Твоя ачивка: {{ achive }}</p>
-    {% if later_trips %}
-        <h2>Предстоящие поездки</h2>
+{% extends "base.html" %}
+
+{% block title %}Статистика — Passepartout{% endblock %}
+
+{% block content %}
+<div class="page-head">
+    <div>
+        <h1>Статистика и достижения</h1>
+        <p class="subtitle">Ваш путешественник в цифрах</p>
+    </div>
+    <span class="badge">🏆 {{ achive }}</span>
+</div>
+
+<div class="stat-grid">
+    <div class="stat">
+        <p class="label">Посещено стран</p>
+        <p class="value">{{ count_country }}</p>
+    </div>
+    <div class="stat">
+        <p class="label">Расходы за месяц</p>
+        <p class="value">{{ sum_price_month }} ₽</p>
+    </div>
+    <div class="stat">
+        <p class="label">Предстоящие поездки</p>
+        <p class="value">{{ trips_count }}</p>
+    </div>
+</div>
+
+{% if later_trips %}
+    <h2>Предстоящие поездки</h2>
+    <div class="trip-list">
         {% for trip in later_trips %}
-            <div class="info-about-trip">
-                <p>Страна: {{ trip.trip_to }}</p>
-                <p>Длительность поездки в днях: {{ trip.trip_late }}</p>
-                <div>
-                    <h4>План поездки</h4>
-                    <p>{{ trip.trip_plan }}</p>
+            <div class="card">
+                <div class="page-head" style="margin-bottom:.5rem">
+                    <h3 style="margin:0">{{ trip.trip_to }}</h3>
+                    <span class="badge">{{ trip.trip_late }} дн.</span>
                 </div>
+                {% if trip.trip_plan %}
+                    <p class="subtitle" style="margin:0 0 .3rem;font-weight:600">План поездки</p>
+                    <p style="margin:0;white-space:pre-wrap">{{ trip.trip_plan }}</p>
+                {% endif %}
             </div>
         {% endfor %}
-    {% endif %}
-</main>
-<footer>
-    <div><p>&copy Passepartout 2024</p></div>
-</footer>
-</body>
-</html>
+    </div>
+{% endif %}
+{% endblock %}

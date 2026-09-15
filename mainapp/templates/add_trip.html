@@ -1,50 +1,50 @@
-{% load static %}
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'css/add_trip_style.css' %}">
-    <title>Главная страница</title>
-</head>
-<body>
-<header>
-    <ul>
-        <li><a href="{% url 'mainapp:main' %}">Ваши билеты</a></li>
-        <li><a href="{% url 'mainapp:statistics' %}">Статистика и достижения</a></li>
-        <li><a href="{% url 'firstapp:logout' %}">Выйти</a></li>
-    </ul>
-</header>
-<main>
-    <section>
+{% block title %}Новая поездка — Passepartout{% endblock %}
+
+{% block content %}
+<div class="form-wrap wide">
+    <div class="page-head">
         <div>
-            <form action="{% url 'mainapp:process_add_trip' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <label for="country">Введите страну</label>
-                <input name="country" type="text" id="country">
-                <label for="date_start">Введите дату начала</label>
-                <input type="date" id="date_start" name="date_start">
-                <label for="date_end">Введите дату окончания</label>
-                <input type="date" id="date_end" name="date_end">
-                <label for="price">Введите цену (только цифры)</label>
-                <input type="text" name="price" id="price">
-                <label for="trip_plan">Опишите план поедки</label>
-                <textarea name="trip_plan" id="trip_plan"></textarea>
-                <label for="file">Загрузите билет</label>
-                <input id="file" name="file" type="file" accept="application/pdf">
-                <input type="submit" value="Создать">
-            </form>
-            {% if error %}
-                <div><p>{{ error }}</p></div>
-            {% endif %}
+            <h1 style="font-size:1.6rem;margin:0">Новая поездка</h1>
+            <p class="subtitle">Заполните данные и загрузите билет</p>
         </div>
-    </section>
-</main>
-<footer>
-    <div><p>&copy Passepartout 2024</p></div>
-</footer>
-</body>
-</html>
+        <a class="btn btn-ghost" href="{% url 'mainapp:main' %}">← Назад</a>
+    </div>
+
+    <div class="card">
+        {% if error %}
+            <div class="alert alert-error" style="margin-bottom:1rem">{{ error }}</div>
+        {% endif %}
+
+        <form action="{% url 'mainapp:process_add_trip' %}" method="post" enctype="multipart/form-data" class="form-grid">
+            {% csrf_token %}
+            <div class="field">
+                <label for="country">Страна</label>
+                <input class="input" name="country" type="text" id="country" required>
+            </div>
+            <div class="field">
+                <label for="date_start">Дата начала</label>
+                <input class="input" type="date" id="date_start" name="date_start" required>
+            </div>
+            <div class="field">
+                <label for="date_end">Дата окончания</label>
+                <input class="input" type="date" id="date_end" name="date_end" required>
+            </div>
+            <div class="field">
+                <label for="price">Цена, ₽ (только цифры)</label>
+                <input class="input" type="number" min="0" name="price" id="price" required>
+            </div>
+            <div class="field">
+                <label for="trip_plan">План поездки</label>
+                <textarea class="textarea" name="trip_plan" id="trip_plan" placeholder="Что планируете посмотреть?"></textarea>
+            </div>
+            <div class="field">
+                <label for="file">Билет (PDF)</label>
+                <input class="input" id="file" name="file" type="file" accept="application/pdf" required>
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">Создать</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

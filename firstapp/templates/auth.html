@@ -1,38 +1,37 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'css/style_auth.css' %}">
-    <title>Passepartout</title>
-</head>
-<body>
-<header>
-    <ul>
-        <li><a href="{% url 'firstapp:register' %}">Регистрация</a></li>
-        <li><a href="{% url 'firstapp:authenticate' %}">Войти</a></li>
-        {% if auth %}
-            <li><a href="{% url 'firstapp:logout' %}">Выйти</a></li>
+{% extends "base.html" %}
+
+{% block title %}Вход — Passepartout{% endblock %}
+
+{% block content %}
+<div class="form-wrap">
+    <div class="card">
+        <div class="page-head" style="margin-bottom:1rem">
+            <div>
+                <h1 style="font-size:1.6rem;margin:0">С возвращением</h1>
+                <p class="subtitle">Войдите в свой аккаунт</p>
+            </div>
+        </div>
+
+        {% if error %}
+            <div class="alert alert-error" style="margin-bottom:1rem">{{ error }}</div>
         {% endif %}
-    </ul>
-</header>
-<main>
-    <div id="form_auth">
-        <form action="{% url 'firstapp:authentication_process' %}" method="post">
+
+        <form action="{% url 'firstapp:authentication_process' %}" method="post" class="form-grid">
             {% csrf_token %}
-            <label for="email-input">Email</label>
-            <input type="email" name="email" id="email-input">
-            <label for="password-input">Password</label>
-            <input type="password" name="password" id="password-input">
-            <input type="submit" value="Войти">
+            <div class="field">
+                <label for="email-input">Email</label>
+                <input class="input" type="email" name="email" id="email-input" required autocomplete="email">
+            </div>
+            <div class="field">
+                <label for="password-input">Пароль</label>
+                <input class="input" type="password" name="password" id="password-input" required autocomplete="current-password">
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">Войти</button>
         </form>
+
+        <p class="subtitle" style="text-align:center;margin:1rem 0 0">
+            Нет аккаунта? <a href="{% url 'firstapp:register' %}">Зарегистрироваться</a>
+        </p>
     </div>
-</main>
-<footer>
-    <div><p>&copy Passepartout 2024</p></div>
-</footer>
-</body>
-</html>
+</div>
+{% endblock %}

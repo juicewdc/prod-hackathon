@@ -1,41 +1,53 @@
+{% extends "base.html" %}
 {% load static %}
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'css/style_first_page.css' %}">
-    <title>Passepartout</title>
-</head>
-<body>
-<header>
-    <ul>
-        <li><a href="{% url 'firstapp:register' %}" target="_self">Регистрация</a></li>
-        <li><a href="{% url 'firstapp:authenticate' %}">Войти</a></li>
-        {% if auth %}
-            <li><a href="{% url 'firstapp:logout' %}">Выйти</a></li>
-        {% endif %}
-    </ul>
-</header>
-<main>
-    <section>
-        <div id="about">
-            <p><img src="{% static 'images/first_page_img.webp' %}" alt="Менеджер путешествий" id="img_about">Добро пожаловать в Passepartout, ваш ультимативный помощник в любых путешествиях</p>
-            <br>
-            <p>Наши преимущетсва:</p>
-            <ul>
-                <li>Удобный поиск авиа и ж/д билетов</li>
-                <li>Просмотор и отслеживание ваших заказов</li>
-                <li>С нами путешествия еще более интересны и комфортны</li>
-            </ul>
+{% block title %}Passepartout — ассистент в путешествиях{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div>
+        <span class="eyebrow">Ваш помощник в дороге</span>
+        <h1>Все путешествия — в одном месте</h1>
+        <p class="lead">
+            Загружайте билеты, отслеживайте предстоящие поездки и следите за статистикой.
+            Passepartout собирает всё, что раньше приходилось держать в десятке разных приложений.
+        </p>
+        <div class="hero-actions">
+            <a class="btn btn-primary" href="{% url 'firstapp:register' %}">Начать бесплатно</a>
+            <a class="btn btn-ghost" href="{% url 'firstapp:authenticate' %}">Войти</a>
         </div>
-    </section>
-</main>
-<footer>
-    <div><p>&copy Passepartout 2024</p></div>
-</footer>
-</body>
-</html>
+    </div>
+    <img class="hero-img" src="{% static 'images/first_page_img.webp' %}" alt="Менеджер путешествий">
+</section>
+
+<div class="feature-grid">
+    <div class="feature">
+        <span class="ico">🎫</span>
+        <div>
+            <h3>Билеты под рукой</h3>
+            <p>Загружайте билеты в PDF и открывайте их в любой момент.</p>
+        </div>
+    </div>
+    <div class="feature">
+        <span class="ico">📊</span>
+        <div>
+            <h3>Статистика поездок</h3>
+            <p>Страны, расходы за месяц и предстоящие путешествия — на одном экране.</p>
+        </div>
+    </div>
+    <div class="feature">
+        <span class="ico">🏆</span>
+        <div>
+            <h3>Достижения</h3>
+            <p>Получайте награды за посещённые страны и открывайте новые статусы.</p>
+        </div>
+    </div>
+    <div class="feature">
+        <span class="ico">✍️</span>
+        <div>
+            <h3>Блог путешествий</h3>
+            <p>Делитесь впечатлениями и читайте истории других путешественников.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
