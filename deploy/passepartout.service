@@ -1,0 +1,28 @@
+[Unit]
+Description=Passepartout (Django + Gunicorn)
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/popka/prod-hackathon
+
+# --- Настройки приложения ---
+Environment=DJANGO_DEBUG=False
+Environment=DJANGO_ALLOWED_HOSTS=31.56.211.160,localhost,127.0.0.1
+# ЗАМЕНИТЕ на свой секрет: python -c "import secrets;print(secrets.token_urlsafe(50))"
+Environment=DJANGO_SECRET_KEY=CHANGE_ME_TO_A_LONG_RANDOM_STRING
+
+ExecStart=/root/popka/prod-hackathon/venv/bin/gunicorn \
+    djangoProject_prod_trlavel_v1.wsgi:application \
+    --bind 0.0.0.0:8000 \
+    --workers 3 \
+    --access-logfile - \
+    --error-logfile - \
+    --capture-output
+
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
