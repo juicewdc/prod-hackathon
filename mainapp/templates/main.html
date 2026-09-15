@@ -19,10 +19,9 @@
     <div class="trip-list">
         {% for event in content %}
             <div class="trip-row">
-                <span style="font-size:1.4rem">🧳</span>
                 <div>
                     <div class="country">{{ event.country }}</div>
-                    <div class="date">{{ event.date|date:"d.m.Y"|default:"Дата не указана" }}</div>
+                    <div class="date">{{ event.date|date:"d.m.Y"|default:"дата не указана" }}</div>
                 </div>
                 <div class="price">{{ event.price }} ₽</div>
                 <a class="btn btn-ghost" href="{% url 'mainapp:download' id=event.id %}">Билет</a>
@@ -30,9 +29,8 @@
         {% endfor %}
     </div>
 {% else %}
-    <div class="card empty">
-        <div class="emoji">🌍</div>
-        <p>У вас ещё нет поездок.</p>
+    <div class="empty">
+        <p>В журнале пока нет поездок.</p>
         <a class="btn btn-primary" href="{% url 'mainapp:add_trip' %}">Добавить первую поездку</a>
     </div>
 {% endif %}

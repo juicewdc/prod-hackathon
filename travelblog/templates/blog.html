@@ -22,10 +22,9 @@
         {% endfor %}
     </div>
 {% else %}
-    <div class="card empty">
-        <div class="emoji">📝</div>
-        <p>Постов пока нет. Станьте первым!</p>
-        <a class="btn btn-primary" href="{% url 'travelblog:add_post' %}">Написать пост</a>
+    <div class="empty">
+        <p>Заметок пока нет. Станьте первым!</p>
+        <a class="btn btn-primary" href="{% url 'travelblog:add_post' %}">Написать заметку</a>
     </div>
 {% endif %}
 {% endblock %}

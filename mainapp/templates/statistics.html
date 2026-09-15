@@ -5,23 +5,23 @@
 {% block content %}
 <div class="page-head">
     <div>
-        <h1>Статистика и достижения</h1>
+        <h1>Статистика</h1>
         <p class="subtitle">Ваш путешественник в цифрах</p>
     </div>
-    <span class="badge">🏆 {{ achive }}</span>
+    <a class="btn btn-ghost" href="{% url 'mainapp:profile' %}">Достижения →</a>
 </div>
 
-<div class="stat-grid">
+<div class="stat-strip">
     <div class="stat">
-        <p class="label">Посещено стран</p>
+        <p class="label">посещено стран</p>
         <p class="value">{{ count_country }}</p>
     </div>
     <div class="stat">
-        <p class="label">Расходы за месяц</p>
-        <p class="value">{{ sum_price_month }} ₽</p>
+        <p class="label">расходы за месяц, ₽</p>
+        <p class="value">{{ sum_price_month }}</p>
     </div>
     <div class="stat">
-        <p class="label">Предстоящие поездки</p>
+        <p class="label">предстоящие поездки</p>
         <p class="value">{{ trips_count }}</p>
     </div>
 </div>
@@ -31,9 +31,9 @@
     <div class="trip-list">
         {% for trip in later_trips %}
             <div class="card">
-                <div class="page-head" style="margin-bottom:.5rem">
+                <div class="page-head" style="margin-bottom:.5rem;padding-bottom:0;border:0">
                     <h3 style="margin:0">{{ trip.trip_to }}</h3>
-                    <span class="badge">{{ trip.trip_late }} дн.</span>
+                    <span class="tag">{{ trip.trip_late }} дн.</span>
                 </div>
                 {% if trip.trip_plan %}
                     <p class="subtitle" style="margin:0 0 .3rem;font-weight:600">План поездки</p>

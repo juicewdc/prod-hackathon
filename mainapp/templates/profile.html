@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Профиль — Passepartout{% endblock %}
+
+{% block content %}
+<div class="page-head">
+    <div>
+        <h1>Профиль</h1>
+        <p class="subtitle">Аккаунт, достижения и сводка поездок</p>
+    </div>
+</div>
+
+<div class="card profile-head">
+    <div class="avatar">{{ profile_user.username|default:profile_user.email|make_list|first|upper }}</div>
+    <div class="profile-id">
+        <h2 style="margin:0">{{ profile_user.username|default:"Путешественник" }}</h2>
+        <p class="subtitle" style="margin:.15rem 0 0">{{ profile_user.email }}</p>
+    </div>
+    <a class="btn btn-ghost" href="{% url 'firstapp:logout' %}">Выйти</a>
+</div>
+
+<p class="section-label" style="margin-top:2rem">Сводка по поездкам</p>
+<div class="stat-strip">
+    <div class="stat">
+        <p class="label">посещено стран</p>
+        <p class="value">{{ count_country }}</p>
+    </div>
+    <div class="stat">
+        <p class="label">всего поездок</p>
+        <p class="value">{{ total_trips }}</p>
+    </div>
+    <div class="stat">
+        <p class="label">предстоящих</p>
+        <p class="value">{{ upcoming_count }}</p>
+    </div>
+</div>
+
+<p class="section-label" style="margin-top:2rem">Достижения — текущий статус: {{ achievements.current }}</p>
+
+{% if achievements.next %}
+    <div class="card" style="margin-bottom:1.25rem">
+        <div class="page-head" style="margin-bottom:.6rem;padding-bottom:0;border:0">
+            <p style="margin:0;font-family:var(--font-display);font-weight:700">До «{{ achievements.next.name }}»</p>
+            <span class="subtitle" style="font-family:var(--font-mono);font-size:.8rem">осталось стран: {{ achievements.next.remaining }}</span>
+        </div>
+        <div class="progress"><span style="width:{{ achievements.next.percent }}%"></span></div>
+    </div>
+{% endif %}
+
+<div class="achv-list">
+    {% for a in achievements.ladder %}
+        <div class="achv {% if not a.unlocked %}locked{% endif %}">
+            <span class="stamp">{{ forloop.counter }}</span>
+            <div class="ach-body">
+                <div class="ach-name">{{ a.name }}</div>
+                <div class="ach-desc">{{ a.desc }}</div>
+            </div>
+            <span class="ach-state">{% if a.unlocked %}получено{% else %}закрыто{% endif %}</span>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

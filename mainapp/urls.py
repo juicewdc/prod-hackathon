@@ -7,6 +7,7 @@ urlpatterns = [
     path('proces-add-trip', views.process_add_trip, name='process_add_trip'),
     path('download/<int:id>/', views.download, name='download'),
     path('statistics/', views.statistics, name='statistics'),
+    path('profile/', views.profile, name='profile'),
     path('request-process-add-trip/', views.request_process_add_trip, name='request_process_add_trip'),
 
 ]
